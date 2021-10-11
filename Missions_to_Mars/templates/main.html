@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mission to Mars</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="jumbotron text-center" style="background-color: steelblue; color:white;">
+      <h1>Mission to Mars</h1>
+      <p><a class="btn btn-primary btn-lg" style="background-color: darkslategray;" href="/scrape" role="button">GET THE LATEST DATA</a></p>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+        <img src={{ mars_dictionary.featured_image_url }} style="width:100%;">
+      </div>
+      <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+        <h2>Lastest Mars News</h2>
+        <h3>{{ mars_dictionary.news_title }}</h3>
+        <p>{{ mars_dictionary.news_p }}</p>
+      </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+      <h2 class="text-center">Hemishphere Images</h2>
+      <br>
+      {% for image in mars_dictionary.hemisphere_images %}
+      <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+        <div class="card border-primary" style="width: 18rem;">
+        <img class="card-img-top" src="{{ image.img_url }}" alt="{{ image.title }}" style="width:100%;">
+        <div class="card-body">
+          <h5 class="card-title">{{ image.title }}</h5>
+        </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+</div>
+  </div>
+</body>
+
+</html>
