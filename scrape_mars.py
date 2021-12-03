@@ -4,8 +4,8 @@ from bs4 import BeautifulSoup as bs
 import pandas as pd
 from splinter import Browser
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium import webdriver
 import requests
-import pandas as pd
 def scraper():
         
     # Splinter
@@ -24,7 +24,6 @@ def scraper():
     print(news_p)
 
     executable_path = {"executable_path": ChromeDriverManager().install()}
-    browser = Browser("chrome", **executable_path, headless=False)
     img_url = 'https://spaceimages-mars.com/'
     browser.visit(img_url)
     time.sleep(2)
@@ -46,8 +45,8 @@ def scraper():
     print(facts_html)
 
     executable_path = {"executable_path": ChromeDriverManager().install()}
-    browser = Browser("chrome", **executable_path, headless=False)
     imgs_url = 'https://marshemispheres.com/'
+    img_url2 = 'https://marshemispheres.com'
     browser.visit(imgs_url)
     time.sleep(2)
     html = browser.html
@@ -71,8 +70,9 @@ def scraper():
         for x in title_div:
             title = x.find('h2').text
             title_img['title'] = title
-        img = browser.links.find_by_partial_href('enhanced.tif')
+        img = browser.links.find_by_partial_href('full.jpg')
         img = img['href']
+        img_full = f"{img_url2}{img}"
         title_img = {}
         title_img['img_url'] = img
         hemisphere_image_urls.append(title_img)
@@ -86,6 +86,8 @@ def scraper():
     }
     
     return mars_dictionary
+    broswer.Quit()
+    
 
 if __name__=="__main__":
     scraper()
